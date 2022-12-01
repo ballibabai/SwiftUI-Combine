@@ -6,22 +6,30 @@
 //
 
 import Foundation
+import Combine
 
 class FoxViewModel: ObservableObject {
     
+    private var cancellable =  Set<AnyCancellable>()
     @Published var fox: FoxModel?
     
     init(){
-        getData()
+        getDataWithCombine()
     }
-    func getData(){
-        FoxRequest.shared.retrieveData(path: .floof) { response in
-            DispatchQueue.main.async {
-                self.fox = response
+    func getDataWithCombine(){
+        FoxRequest.shared.newFetchData(path: .floof).sink(receiveCompletion: { completion in
+            switch completion{
+            case .failure(let error):
+                print("error \(error.localizedDescription)")
+            case .finished:
+                print("It,s Done!")
             }
-        }
+        }, receiveValue: { [weak self] data in
+            self?.fox = data
+            
+        }).store(in: &cancellable)
     }
     func refreshButton(){
-        getData()
+        getDataWithCombine()
     }
 }

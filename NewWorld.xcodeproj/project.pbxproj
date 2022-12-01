@@ -10,6 +10,7 @@
 		1E140A8E292FC64100928BC2 /* NewWorldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E140A8D292FC64100928BC2 /* NewWorldApp.swift */; };
 		1E140A92292FC64200928BC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E140A91292FC64200928BC2 /* Assets.xcassets */; };
 		1E140A95292FC64200928BC2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E140A94292FC64200928BC2 /* Preview Assets.xcassets */; };
+		1E6626882938BE14002173B2 /* ErrorTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6626872938BE14002173B2 /* ErrorTypes.swift */; };
 		1E6DB88129376D2500D3FE56 /* FoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB88029376D2500D3FE56 /* FoxView.swift */; };
 		1E6DB88529376FA600D3FE56 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1E6DB88429376FA600D3FE56 /* Kingfisher */; };
 		1E6DB887293770C000D3FE56 /* FoxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DB886293770C000D3FE56 /* FoxModel.swift */; };
@@ -24,6 +25,7 @@
 		1E140A8D292FC64100928BC2 /* NewWorldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorldApp.swift; sourceTree = "<group>"; };
 		1E140A91292FC64200928BC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E140A94292FC64200928BC2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1E6626872938BE14002173B2 /* ErrorTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTypes.swift; sourceTree = "<group>"; };
 		1E6DB88029376D2500D3FE56 /* FoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoxView.swift; sourceTree = "<group>"; };
 		1E6DB886293770C000D3FE56 /* FoxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoxModel.swift; sourceTree = "<group>"; };
 		1E6DB88D293772BC00D3FE56 /* FoxRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoxRequest.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				1E6DB8902937733400D3FE56 /* FoxPath.swift */,
+				1E6626872938BE14002173B2 /* ErrorTypes.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				1E6DB88129376D2500D3FE56 /* FoxView.swift in Sources */,
 				1E6DB88E293772BC00D3FE56 /* FoxRequest.swift in Sources */,
 				1E6DB887293770C000D3FE56 /* FoxModel.swift in Sources */,
+				1E6626882938BE14002173B2 /* ErrorTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

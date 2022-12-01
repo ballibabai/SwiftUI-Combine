@@ -13,9 +13,8 @@ import Combine
 
 class FoxRequest {
     static let shared = FoxRequest()
-    private var cancellable: AnyCancellable?
-    
     private let baseUrl: String = "https://randomfox.ca/"
+    var cancellable =  Set<AnyCancellable>()
     
     //MARK: - Alamofire
     func fetchData(path: FoxPath, completion:@escaping (FoxModel) -> ()){
@@ -27,22 +26,26 @@ class FoxRequest {
     }
     
     //MARK: - Combine
-    func retrieveData(path: FoxPath, completion:@escaping (FoxModel) -> ()){
-        guard let url = URL(string: baseUrl + path.rawValue) else {return}
-        let publisher = URLSession.shared
-            .dataTaskPublisher(for: url)
-            .map(\.data)
-            .decode(type: FoxModel.self, decoder: JSONDecoder())
-            cancellable = publisher
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let error):
-                    print("error: \(error.localizedDescription)")
-                default:()
+    func newFetchData(path: FoxPath) -> Future<FoxModel, ErrorTypes>{
+        return Future<FoxModel, ErrorTypes> { [weak self] promise in
+            guard let self = self, let url = URL(string: self.baseUrl.appending(path.rawValue)) else {return promise(.failure(.invalidURL))}
+            URLSession.shared.dataTaskPublisher(for: url)
+                .tryMap { data, _ -> Data in
+                    return data
                 }
-            }, receiveValue: { data in
-                completion(data)
-            })
+                .decode(type: FoxModel.self, decoder: JSONDecoder())
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion{
+                    case .failure(let error):
+                        print("error \(error.localizedDescription)")
+                    default:()
+                    }
+                }, receiveValue: { data in
+                    promise(.success(data))
+                }).store(in: &self.cancellable)
+        }
+        
     }
     
 }
